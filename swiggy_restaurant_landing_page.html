@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{restaurant_name}} — Swiggy Ads Package | Run Meta Ads at Discounted Rates</title>
+<style>
+  :root {
+    --orange: #FC8019;
+    --orange-dark: #E06F00;
+    --orange-light: #FFF3E6;
+    --green: #60B246;
+    --green-dark: #4A9035;
+    --dark: #1B1B1B;
+    --gray-900: #282C3F;
+    --gray-700: #535665;
+    --gray-400: #93959F;
+    --gray-200: #D4D5D9;
+    --gray-100: #F0F0F5;
+    --white: #FFFFFF;
+    --red: #E23744;
+    --blue: #2D6CDF;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--gray-100);
+    color: var(--gray-900);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+    padding: 48px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--gray-100);
+    border-radius: 40px 40px 0 0;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.2);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .hero-badge .dot {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+  .hero h1 {
+    color: var(--white);
+    font-size: clamp(22px, 5vw, 32px);
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .hero .restaurant-name {
+    color: var(--white);
+    font-size: clamp(16px, 3.5vw, 20px);
+    font-weight: 400;
+    opacity: 0.95;
+  }
+  .hero .locality-tag {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+    font-size: 14px;
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+
+  /* ── Container ── */
+  .container {
+    max-width: 480px;
+    margin: -40px auto 0;
+    padding: 0 16px 100px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+  }
+
+  /* ── Urgency Banner ── */
+  .urgency-banner {
+    background: linear-gradient(90deg, #FFF7ED, #FEF3E2);
+    border: 1px solid #FDDCAB;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .urgency-banner .icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .urgency-banner p {
+    font-size: 14px;
+    color: var(--gray-700);
+    font-weight: 500;
+  }
+  .urgency-banner strong { color: var(--orange-dark); }
+
+  /* ── Stats Grid ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .stat-box {
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-box .label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+  }
+  .stat-box .value {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--gray-900);
+  }
+  .stat-box .value small {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-400);
+  }
+  .stat-box.highlight {
+    background: var(--orange-light);
+  }
+  .stat-box.highlight .value {
+    color: var(--orange-dark);
+  }
+
+  /* ── Before / After ── */
+  .comparison {
+    display: flex;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .comparison .col {
+    flex: 1;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .comparison .col.before {
+    background: var(--gray-100);
+  }
+  .comparison .col.after {
+    background: linear-gradient(135deg, #E8F5E1, #D4EDDA);
+  }
+  .comparison .col-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--gray-400);
+    margin-bottom: 12px;
+  }
+  .comparison .col.after .col-label { color: var(--green-dark); }
+  .comparison .metric {
+    margin-bottom: 14px;
+  }
+  .comparison .metric:last-child { margin-bottom: 0; }
+  .comparison .metric .num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gray-900);
+  }
+  .comparison .col.after .metric .num { color: var(--green-dark); }
+  .comparison .metric .desc {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: 2px;
+  }
+  .arrow-divider {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    padding: 0 4px;
+    font-size: 20px;
+    color: var(--green);
+  }
+
+  /* ── Competitor Alert ── */
+  .competitor-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: #FEF2F2;
+    border-radius: 10px;
+    border: 1px solid #FECACA;
+  }
+  .competitor-alert .icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .competitor-alert p { font-size: 14px; color: var(--gray-700); }
+  .competitor-alert strong { color: var(--red); }
+
+  /* ── Social Proof ── */
+  .social-proof {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #EFF6FF;
+    border-radius: 10px;
+    margin-top: 12px;
+  }
+  .avatars {
+    display: flex;
+    flex-shrink: 0;
+  }
+  .avatars span {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    margin-left: -8px;
+    border: 2px solid var(--white);
+  }
+  .avatars span:first-child { margin-left: 0; }
+  .social-proof p { font-size: 14px; color: var(--gray-700); font-weight: 500; }
+  .social-proof strong { color: var(--blue); }
+
+  /* ── What You Get ── */
+  .benefit-list { list-style: none; }
+  .benefit-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .benefit-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .benefit-list .check {
+    width: 24px; height: 24px;
+    background: #E8F5E1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  .benefit-list .text strong {
+    display: block;
+    font-size: 15px;
+    color: var(--gray-900);
+    margin-bottom: 2px;
+  }
+  .benefit-list .text span {
+    font-size: 13px;
+    color: var(--gray-700);
+  }
+
+  /* ── How It Works ── */
+  .steps {
+    counter-reset: step;
+  }
+  .step {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px; height: 32px;
+    background: var(--orange-light);
+    color: var(--orange-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .step-content strong {
+    display: block;
+    font-size: 15px;
+    color: var(--gray-900);
+    margin-bottom: 2px;
+  }
+  .step-content span {
+    font-size: 13px;
+    color: var(--gray-700);
+  }
+
+  /* ── FAQ ── */
+  .faq-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item summary {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-900);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 20px;
+    color: var(--gray-400);
+    transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+  .faq-item p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--gray-700);
+    line-height: 1.7;
+  }
+
+  /* ── Sticky CTA ── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    padding: 12px 16px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .sticky-cta .btn-primary {
+    width: 100%;
+    max-width: 480px;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .sticky-cta .btn-primary:active {
+    transform: scale(0.98);
+  }
+  .sticky-cta .subtext {
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+
+  /* ── Share Strip ── */
+  .share-strip {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .share-strip a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s;
+  }
+  .share-strip a:active { transform: scale(0.97); }
+  .share-strip .wa-share {
+    background: #25D366;
+    color: var(--white);
+  }
+  .share-strip .copy-link {
+    background: var(--gray-100);
+    color: var(--gray-700);
+    border: 1px solid var(--gray-200);
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 24px 16px 20px;
+    margin-bottom: 80px;
+  }
+  .footer img { height: 28px; margin-bottom: 8px; }
+  .footer p { font-size: 12px; color: var(--gray-400); }
+
+  /* ── Responsive ── */
+  @media (min-width: 600px) {
+    .container { padding: 0 24px 100px; }
+    .card { padding: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ═══════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-badge"><span class="dot"></span> Limited Packages Available</div>
+  <div style="display:inline-block;background:rgba(255,255,255,0.25);color:white;font-size:clamp(20px,5vw,28px);font-weight:900;padding:8px 20px;border-radius:10px;margin-bottom:12px;letter-spacing:-0.5px;line-height:1.3;">Ads Package at ₹{{ad_package_price}} <span style="font-size:0.6em;font-weight:500;text-decoration:line-through;opacity:0.7;">₹{{ad_package_mrp}}</span></div>
+  <h1>Get Your Restaurant's Ads<br>on Facebook &amp; Instagram</h1>
+  <p class="restaurant-name">{{restaurant_name}} &middot; {{cuisine_type}}</p>
+  <span class="locality-tag">📍 {{locality}}, {{city}}</span>
+</header>
+
+<main class="container">
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- URGENCY BANNER -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="urgency-banner">
+    <span class="icon">⏳</span>
+    <p>Only <strong>{{packages_remaining}} discounted packages left</strong> in {{locality}}. Booking closes <strong>{{campaign_end_date}}</strong>.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- YOUR CURRENT NUMBERS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="card">
+    <p class="card-title">📦 Your Ads Package</p>
+    <div class="stats-grid">
+      <div class="stat-box highlight">
+        <p class="label">Package Price</p>
+        <p class="value">₹{{ad_package_price}}</p>
+      </div>
+      <div class="stat-box">
+        <p class="label">Regular Price</p>
+        <p class="value" style="text-decoration:line-through;color:var(--gray-400);">₹{{ad_package_mrp}}</p>
+      </div>
+      <div class="stat-box highlight">
+        <p class="label">You Save</p>
+        <p class="value">{{ad_package_discount}}</p>
+      </div>
+      <div class="stat-box">
+        <p class="label">Campaign Duration</p>
+        <p class="value">{{ad_package_duration}}</p>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--gray-700);margin-top:12px;text-align:center;">Your existing active offers on Swiggy will be featured in the ads — no extra discounts needed from you.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- BEFORE vs AFTER -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="card">
+    <p class="card-title">🚀 What Restaurants Like Yours Are Seeing</p>
+    <div class="comparison">
+      <div class="col before">
+        <p class="col-label">Before Ads</p>
+        <div class="metric">
+          <p class="num">{{avg_monthly_orders}}</p>
+          <p class="desc">orders / mo</p>
+        </div>
+        <div class="metric">
+          <p class="num">₹{{current_monthly_revenue}}</p>
+          <p class="desc">revenue / mo</p>
+        </div>
+        <div class="metric">
+          <p class="num">Organic</p>
+          <p class="desc">traffic only</p>
+        </div>
+      </div>
+      <div class="arrow-divider">→</div>
+      <div class="col after">
+        <p class="col-label">With Meta Ads</p>
+        <div class="metric">
+          <p class="num">{{projected_orders}}</p>
+          <p class="desc">orders / mo</p>
+        </div>
+        <div class="metric">
+          <p class="num">₹{{projected_monthly_revenue}}</p>
+          <p class="desc">revenue / mo</p>
+        </div>
+        <div class="metric">
+          <p class="num">{{projected_new_customers}}</p>
+          <p class="desc">new customers via ads</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- COMPETITOR ALERT -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="card">
+    <div class="competitor-alert">
+      <span class="icon">⚠️</span>
+      <p><strong>{{competitor_count_locality}} restaurants</strong> in {{locality}} sell {{cuisine_type}}. Those running Meta ads through Swiggy are pulling in <strong>{{projected_new_customers}}+ new customers</strong> per campaign. Only <strong>{{packages_remaining}} packages left</strong> at this price.</p>
+    </div>
+    <div class="social-proof">
+      <div class="avatars">
+        <span style="background:#FC8019">B</span>
+        <span style="background:#60B246">K</span>
+        <span style="background:#2D6CDF">M</span>
+        <span style="background:#E23744">P</span>
+      </div>
+      <p><strong>{{lp_social_proof}}</strong></p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- WHAT YOU GET -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="card">
+    <p class="card-title">🎁 What's Included in the Package</p>
+    <ul class="benefit-list">
+      <li>
+        <span class="check">✓</span>
+        <div class="text">
+          <strong>Facebook &amp; Instagram Ads for {{restaurant_name}}</strong>
+          <span>Swiggy runs geo-targeted ads featuring your restaurant and your existing active offers to food lovers in and around {{locality}}.</span>
+        </div>
+      </li>
+      <li>
+        <span class="check">✓</span>
+        <div class="text">
+          <strong>Your Existing Offers — No Extra Discounts</strong>
+          <span>The ads showcase the offers already running on your Swiggy listing. No additional discount or margin hit from your end.</span>
+        </div>
+      </li>
+      <li>
+        <span class="check">✓</span>
+        <div class="text">
+          <strong>New Customers Driven to Your Swiggy Listing</strong>
+          <span>People see the ad on their feed, tap through to {{restaurant_name}} on the Swiggy app, and order. These are customers who weren't finding you before.</span>
+        </div>
+      </li>
+      <li>
+        <span class="check">✓</span>
+        <div class="text">
+          <strong>Professional Ad Creatives — Done For You</strong>
+          <span>Swiggy's team designs the ad creatives with your restaurant's images, name, and offers. Zero effort from your side.</span>
+        </div>
+      </li>
+      <li>
+        <span class="check">✓</span>
+        <div class="text">
+          <strong>Performance Report After Campaign</strong>
+          <span>Once the campaign ends, Swiggy shares a detailed report — ad reach, clicks, new customers, orders generated, and revenue impact.</span>
+        </div>
+      </li>
+      <li>
+        <span class="check">✓</span>
+        <div class="text">
+          <strong>Heavily Discounted Package</strong>
+          <span>This package normally costs ₹{{ad_package_mrp}}. You're getting it at ₹{{ad_package_price}} — that's {{ad_package_discount}} off. Limited packages only.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- AD PREVIEW -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="card">
+    <p class="card-title">📱 What the Ad Looks Like</p>
+    <div style="background:var(--gray-100);border-radius:10px;padding:16px;max-width:300px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <div style="width:28px;height:28px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+          <span style="color:white;font-size:12px;font-weight:800;">S</span>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:600;margin:0;">Swiggy</p>
+          <p style="font-size:10px;color:var(--gray-400);margin:0;">Sponsored</p>
+        </div>
+      </div>
+      <div style="background:var(--orange-light);border-radius:8px;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:10px;border:1px solid #FDDCAB;">
+        <p style="font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:4px;">{{restaurant_name}}</p>
+        <p style="font-size:12px;color:var(--gray-700);margin:0;">{{cuisine_type}} in {{locality}}</p>
+        <div style="margin-top:10px;background:var(--orange);color:white;font-size:12px;font-weight:700;padding:4px 12px;border-radius:4px;">{{active_offer_text}}</div>
+        <p style="font-size:10px;color:var(--gray-400);margin-top:8px;">Order now on Swiggy</p>
+      </div>
+      <div style="display:flex;gap:6px;">
+        <div style="flex:1;background:var(--orange);color:white;text-align:center;padding:8px;border-radius:6px;font-size:12px;font-weight:600;">Order Now</div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--gray-400);margin-top:12px;">Sample ad — Swiggy designs the actual creative with your restaurant's images</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- HOW IT WORKS -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="card">
+    <p class="card-title">⚡ How It Works</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <div class="step-content">
+          <strong>Book Your Ads Package</strong>
+          <span>Click "Book Now" below to reserve your discounted package at ₹{{ad_package_price}}.</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <div class="step-content">
+          <strong>Swiggy Creates &amp; Runs Your Ads</strong>
+          <span>Swiggy picks up your existing active offers, designs ad creatives, and runs them on Facebook &amp; Instagram targeting food lovers near {{locality}}.</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <div class="step-content">
+          <strong>New Customers Find You &amp; Order</strong>
+          <span>People see the ad on their feed, tap through to {{restaurant_name}} on Swiggy, and place orders. You fulfill as usual.</span>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <div class="step-content">
+          <strong>Get Your Performance Report</strong>
+          <span>After the campaign ends, Swiggy shares a detailed performance report — reach, clicks, new customers, orders, and revenue impact.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SHARE WITH OWNER -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="card" style="text-align:center;">
+    <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:16px;margin-bottom:16px;">
+      <p style="font-size:22px;font-weight:900;color:var(--red);margin-bottom:4px;">{{packages_remaining}} Packages Left</p>
+      <p style="font-size:14px;color:var(--gray-700);">at ₹{{ad_package_price}} <span style="text-decoration:line-through;color:var(--gray-400);">₹{{ad_package_mrp}}</span> in {{locality}}</p>
+      <p style="font-size:13px;color:var(--gray-400);margin-top:6px;">Once booked, these packages won't be available again at this rate.</p>
+    </div>
+    <a href="{{signup_page_url}}" style="display:block;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:white;text-align:center;padding:14px;border-radius:10px;font-size:16px;font-weight:700;text-decoration:none;margin-bottom:14px;">Book Your Ads Package Now →</a>
+    <div style="background:var(--gray-100);border-radius:10px;padding:14px;margin-bottom:8px;">
+      <p style="font-size:14px;font-weight:600;color:var(--gray-900);margin-bottom:8px;">Not the decision maker?</p>
+      <p style="font-size:13px;color:var(--gray-700);margin-bottom:12px;">Share this with the restaurant owner before the packages run out.</p>
+      <div class="share-strip">
+        <a href="https://wa.me/?text={{signup_whatsapp_share_text_encoded}}" target="_blank" class="wa-share">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Share on WhatsApp
+        </a>
+        <a href="#" class="copy-link" onclick="copyLink(); return false;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy Link
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- FAQ -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="card">
+    <p class="card-title">❓ Common Questions</p>
+    <details class="faq-item">
+      <summary>How much does this cost?</summary>
+      <p>The ads package costs ₹{{ad_package_price}} (discounted from ₹{{ad_package_mrp}}). This covers the full Meta ad spend, creative design, audience targeting, and campaign management for {{ad_package_duration}}. No other costs or hidden charges.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do I need to offer any extra discounts?</summary>
+      <p>No. Swiggy uses your existing active offers already running on your listing. You don't need to create any new discounts or reduce your margins further.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Who sees these ads?</summary>
+      <p>Swiggy targets people on Facebook and Instagram in and around {{locality}}, {{city}} — specifically users likely to order {{cuisine_type}}. These are high-intent food lovers who may not have tried {{restaurant_name}} yet.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How long does the campaign run?</summary>
+      <p>The campaign runs for {{ad_package_duration}} from the date your ads go live. Swiggy shares a detailed performance report once the campaign ends.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do I need to do anything for the ads?</summary>
+      <p>Nothing at all. Swiggy handles everything — creative design, targeting, and running the ads. Orders come through Swiggy as usual. You just fulfill them.</p>
+    </details>
+    <details class="faq-item">
+      <summary>When do I get the performance report?</summary>
+      <p>Swiggy shares a detailed performance report within {{report_delivery_days}} of campaign completion — covering ad reach, clicks, new customers acquired, total orders, and revenue impact.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Why is the package discounted?</summary>
+      <p>Swiggy is running this as a limited promotional programme for select restaurants in {{locality}}. The discounted rate is available only for {{packages_remaining}} more restaurants — once booked, the rate goes back to ₹{{ad_package_mrp}}.</p>
+    </details>
+    <details class="faq-item">
+      <summary>I'm the manager, not the decision maker.</summary>
+      <p>Please share this page with the restaurant owner or the person who handles marketing spend. Use the "Share on WhatsApp" button above — the packages are limited and filling fast.</p>
+    </details>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- FOOTER -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="footer">
+    <p style="font-size:18px; font-weight:800; color:var(--orange); margin-bottom:4px;">Swiggy</p>
+    <p>Meta Ads Programme for Partner Restaurants</p>
+    <p style="margin-top:8px;">Questions? Call us: 1800-XXX-XXXX</p>
+    <p style="margin-top:4px; font-size:11px; color:#bbb;">Campaign ID: {{restaurant_id}} &middot; Unique to {{restaurant_name}}</p>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- STICKY CTA -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="sticky-cta">
+  <a href="{{signup_page_url}}" class="btn-primary">
+    Book Ads Package — ₹{{ad_package_price}} →
+  </a>
+  <span class="subtext">Only {{packages_remaining}} packages left at this rate &middot; ₹{{ad_package_mrp}} after offer ends</span>
+</div>
+
+<script>
+function copyLink() {
+  const url = window.location.href;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = document.querySelector('.copy-link');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Link'; }, 2000);
+    });
+  }
+}
+</script>
+
+</body>
+</html>
